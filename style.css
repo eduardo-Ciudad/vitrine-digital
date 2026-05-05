@@ -1329,3 +1329,19 @@ footer {
 
 /* ── REMOVE OS ORBS ANTIGOS (agora substituídos) ── */
 /* Comente ou delete os blocos .orb, .orb1, .orb2, .orb3 e @keyframes floatOrb no style.css */
+
+
+/* ── RESPONSIVO: MOBILE ── */
+@media (max-width: 768px) {
+  /* Esconde tudo que polui em tela pequena */
+  .browser-win,
+  .build-tag,
+  .code-snip {
+    display: none;
+  }
+
+  /* Canvas desativado via JS, mas esconde por segurança */
+  #hero-canvas {
+    display: none;
+  }
+}

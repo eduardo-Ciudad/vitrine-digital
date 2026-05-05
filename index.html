@@ -51,12 +51,109 @@
 
   <!-- ── HERO ── -->
   <section id="hero">
+    <<!-- =============================================
+     VITRINE DIGITAL — Hero Background HTML
+     
+     INSTRUÇÃO: Substitua o bloco <div class="hero-bg">...</div> existente
+     por este bloco completo abaixo.
+     ============================================= -->
+
     <div class="hero-bg">
+      <!-- Gradiente e grid mantidos -->
       <div class="h-grad"></div>
       <div class="h-grid"></div>
-      <div class="orb orb1"></div>
-      <div class="orb orb2"></div>
-      <div class="orb orb3"></div>
+
+      <!-- Canvas de partículas conectadas -->
+      <canvas id="hero-canvas"></canvas>
+
+      <!-- Janela 1: esquerda superior -->
+      <div class="browser-win bw1">
+        <div class="bw-bar">
+          <div class="bw-dot r"></div>
+          <div class="bw-dot y"></div>
+          <div class="bw-dot g"></div>
+          <div class="bw-url"></div>
+        </div>
+        <div class="bw-body">
+          <div class="bw-hero-block" style="background:linear-gradient(135deg,rgba(124,58,237,.35),rgba(168,85,247,.2))">
+            <div class="bw-hero-line"></div>
+          </div>
+          <div class="bw-row">
+            <div class="bw-card" style="height:34px"></div>
+            <div class="bw-card" style="height:34px"></div>
+          </div>
+          <div class="bw-line" style="width:82%"></div>
+          <div class="bw-line" style="width:55%"></div>
+        </div>
+      </div>
+
+      <!-- Janela 2: direita superior -->
+      <div class="browser-win bw2">
+        <div class="bw-bar">
+          <div class="bw-dot r"></div>
+          <div class="bw-dot y"></div>
+          <div class="bw-dot g"></div>
+          <div class="bw-url"></div>
+        </div>
+        <div class="bw-body">
+          <div class="bw-hero-block" style="background:linear-gradient(135deg,rgba(168,85,247,.3),rgba(236,72,153,.18))">
+            <div class="bw-hero-line"></div>
+          </div>
+          <div class="bw-row">
+            <div class="bw-card" style="height:28px"></div>
+            <div class="bw-card" style="height:28px"></div>
+            <div class="bw-card" style="height:28px"></div>
+          </div>
+          <div class="bw-line" style="width:90%"></div>
+          <div class="bw-line" style="width:62%"></div>
+        </div>
+      </div>
+
+      <!-- Janela 3: esquerda inferior -->
+      <div class="browser-win bw3">
+        <div class="bw-bar">
+          <div class="bw-dot r"></div>
+          <div class="bw-dot y"></div>
+          <div class="bw-dot g"></div>
+          <div class="bw-url"></div>
+        </div>
+        <div class="bw-body">
+          <div class="bw-hero-block" style="background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(99,102,241,.18));height:32px">
+            <div class="bw-hero-line"></div>
+          </div>
+          <div class="bw-line" style="width:75%"></div>
+          <div class="bw-line" style="width:48%"></div>
+        </div>
+      </div>
+
+      <!-- Janela 4: direita inferior -->
+      <div class="browser-win bw4">
+        <div class="bw-bar">
+          <div class="bw-dot r"></div>
+          <div class="bw-dot y"></div>
+          <div class="bw-dot g"></div>
+          <div class="bw-url"></div>
+        </div>
+        <div class="bw-body">
+          <div class="bw-row">
+            <div class="bw-card" style="height:48px"></div>
+            <div class="bw-card" style="height:48px"></div>
+          </div>
+          <div class="bw-line" style="width:88%"></div>
+          <div class="bw-line" style="width:60%"></div>
+        </div>
+      </div>
+
+      <!-- Build tags -->
+      <div class="build-tag bt1">✦ construindo</div>
+      <div class="build-tag bt2">✦ entregando</div>
+
+      <!-- Snippets de código flutuantes -->
+      <div class="code-snip" style="left:4%;top:72%;--sx:18px;animation-duration:7s;animation-delay:0s">&lt;section class="hero"&gt;</div>
+      <div class="code-snip" style="right:5%;top:62%;--sx:-14px;animation-duration:8s;animation-delay:-3.2s">background: #7c3aed;</div>
+      <div class="code-snip" style="left:34%;bottom:6%;--sx:10px;animation-duration:9s;animation-delay:-1.8s">display: grid;</div>
+      <div class="code-snip" style="right:32%;top:8%;--sx:-22px;animation-duration:6.5s;animation-delay:-5.4s">border-radius: 16px;</div>
+      <div class="code-snip" style="left:18%;bottom:18%;--sx:15px;animation-duration:10s;animation-delay:-7s">font-weight: 900;</div>
     </div>
 
     <div class="hero-inner">
