@@ -1587,6 +1587,59 @@ body.cursor-hover #cursor-ring {
 }
 
 @media (max-width: 768px) {
-  .faq-q  { padding: 20px 22px; font-size: .95rem; }
-  .faq-ans p { padding: 14px 22px 20px; }
+  #faq { padding-top: 72px; padding-bottom: 72px; }
+
+  .faq-hdr { margin-bottom: 40px; }
+
+  .faq-label {
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: .68rem;
+  }
+
+  .faq-ln { width: 18px; }
+
+  #faq .sec-title {
+    font-size: 1.85rem;
+    line-height: 1.15;
+  }
+
+  .faq-list { gap: 10px; }
+
+  .faq-item { border-radius: 11px; }
+
+  .faq-q {
+    padding: 18px 20px;
+    font-size: .94rem;
+    gap: 14px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .faq-chev {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .faq-ans { transition: max-height .38s var(--ease); }
+
+  .faq-ans p {
+    padding: 12px 20px 18px;
+    font-size: .875rem;
+    line-height: 1.72;
+  }
+}
+
+@media (max-width: 480px) {
+  #faq { padding-top: 60px; padding-bottom: 60px; }
+
+  .faq-hdr { margin-bottom: 28px; }
+
+  #faq .sec-title { font-size: 1.65rem; }
+
+  .faq-q { padding: 16px 16px; font-size: .88rem; }
+
+  .faq-ans p { padding: 11px 16px 16px; font-size: .855rem; }
 }
