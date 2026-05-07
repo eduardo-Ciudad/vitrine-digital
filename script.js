@@ -9,10 +9,47 @@
               partículas flutuantes, counter animado, tilt 3D
    ============================================= */
 
-/* ── LOADER ── */
+/* ── LOADER → HERO CINEMATIC TRANSITION ── */
+
+// Set hero to pre-reveal state before first paint (loader covers it, so no flash)
+(function () {
+  const hero = document.getElementById('hero');
+  if (!hero) return;
+  hero.style.opacity    = '0';
+  hero.style.filter     = 'blur(8px)';
+  hero.style.transform  = 'translateY(20px) scale(0.989)';
+  hero.style.willChange = 'opacity, filter, transform';
+})();
+
 window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  const hero   = document.getElementById('hero');
+
   setTimeout(() => {
-    document.getElementById('loader').classList.add('out');
+    // ── Loader exit: dissolves with blur + gentle scale ──
+    if (loader) loader.classList.add('out');
+
+    // ── Hero entry: comes into focus simultaneously ──
+    if (hero) {
+      // Double rAF ensures the browser has committed the initial state
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          hero.style.transition =
+            'opacity 1.1s cubic-bezier(.16,1,.3,1), ' +
+            'filter 1.1s cubic-bezier(.16,1,.3,1), '  +
+            'transform 1.15s cubic-bezier(.16,1,.3,1)';
+          hero.style.opacity   = '1';
+          hero.style.filter    = 'blur(0px)';
+          hero.style.transform = 'none';
+
+          // Remove inline styles after transition — let CSS take over cleanly
+          setTimeout(() => {
+            if (hero) hero.style.cssText = '';
+          }, 1200);
+        });
+      });
+    }
+
   }, 1350);
 });
 

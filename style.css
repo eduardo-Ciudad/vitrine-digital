@@ -66,12 +66,18 @@ body::before {
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  transition: opacity .7s ease, visibility .7s ease;
+  transition:
+    opacity    .9s cubic-bezier(.16, 1, .3, 1),
+    visibility .9s ease,
+    filter     .9s cubic-bezier(.16, 1, .3, 1),
+    transform  .9s cubic-bezier(.16, 1, .3, 1);
 }
 
 #loader.out {
   opacity: 0;
   visibility: hidden;
+  filter: blur(8px);
+  transform: scale(1.03);
 }
 
 .ld-wrap {
