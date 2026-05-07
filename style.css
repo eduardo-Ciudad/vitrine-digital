@@ -1381,3 +1381,212 @@ footer {
     display: none;
   }
 }
+
+/* =============================================
+   PREMIUM INTERACTIONS
+   ============================================= */
+
+/* ── CUSTOM CURSOR ── */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+  a, button { cursor: none; }
+}
+
+#cursor-dot {
+  display: none;
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--p2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px rgba(168, 85, 247, .35);
+  transition: transform .2s ease, opacity .2s ease;
+  will-change: left, top;
+}
+
+#cursor-ring {
+  display: none;
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(124, 58, 237, .38);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 6px rgba(124, 58, 237, .12);
+  transition:
+    width .3s ease,
+    height .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+  will-change: left, top;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #cursor-dot,
+  #cursor-ring { display: block; }
+}
+
+body.cursor-hover #cursor-dot {
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+body.cursor-hover #cursor-ring {
+  width: 42px;
+  height: 42px;
+  border-color: rgba(168, 85, 247, .55);
+  box-shadow: 0 0 10px rgba(124, 58, 237, .18);
+}
+
+/* ── BEN CARD MOUSE-FOLLOW GLOW ── */
+.ben-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(124, 58, 237, .22) 0%,
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity .32s ease;
+  pointer-events: none;
+}
+
+.ben-card:hover::after {
+  opacity: 1;
+}
+
+/* Keep card content above pseudo-element overlays */
+.ben-card .ben-icon,
+.ben-card .ben-title,
+.ben-card .ben-desc {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── FAQ ── */
+#faq {
+  position: relative;
+  overflow: hidden;
+}
+
+#faq::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(139, 92, 246, 0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.faq-hdr {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.faq-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--p2);
+  margin-bottom: 20px;
+}
+
+.faq-ln {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--p2);
+  opacity: .45;
+}
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: rgba(255, 255, 255, .02);
+  border: 1px solid rgba(255, 255, 255, .07);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color .32s ease, box-shadow .32s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(139, 92, 246, .22);
+  box-shadow: 0 0 28px rgba(139, 92, 246, .06);
+}
+
+.faq-item.open {
+  border-color: rgba(139, 92, 246, .38);
+  box-shadow: 0 4px 32px rgba(10, 132, 255, .09);
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 28px;
+  background: none;
+  border: none;
+  color: var(--txt);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  letter-spacing: -.01em;
+}
+
+.faq-q span { flex: 1; }
+
+.faq-chev {
+  flex-shrink: 0;
+  color: var(--p2);
+  transition: transform .38s var(--ease);
+}
+
+.faq-item.open .faq-chev {
+  transform: rotate(180deg);
+}
+
+.faq-ans {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .42s var(--ease);
+}
+
+.faq-item.open .faq-ans {
+  max-height: 160px;
+}
+
+.faq-ans p {
+  padding: 16px 28px 24px;
+  font-size: .92rem;
+  color: var(--muted);
+  line-height: 1.78;
+  border-top: 1px solid rgba(255, 255, 255, .05);
+}
+
+@media (max-width: 768px) {
+  .faq-q  { padding: 20px 22px; font-size: .95rem; }
+  .faq-ans p { padding: 14px 22px 20px; }
+}

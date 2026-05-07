@@ -228,11 +228,98 @@ document.querySelectorAll('.proj-card').forEach(card => {
     const x = (e.clientX - rect.left) / rect.width  - 0.5;
     const y = (e.clientY - rect.top)  / rect.height - 0.5;
 
-    card.style.transform   = `translateY(-10px) scale(1.01) rotateX(${y * -5}deg) rotateY(${x * 5}deg)`;
-    card.style.perspective = '800px';
+    card.style.transform = `perspective(800px) translateY(-10px) scale(1.01) rotateX(${y * -5}deg) rotateY(${x * 5}deg)`;
   });
 
   card.addEventListener('mouseleave', () => {
     card.style.transform = '';
+  });
+});
+
+/* =============================================
+   PREMIUM INTERACTIONS
+   ============================================= */
+
+/* ── CUSTOM CURSOR ── */
+(function initCursor() {
+  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const dot  = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mx = e.clientX;
+    my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+
+  document.querySelectorAll('a, button, .ben-card, .proj-card, .feat, .stat, .hbg').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  (function lerpRing() {
+    rx += (mx - rx) * .1;
+    ry += (my - ry) * .1;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(lerpRing);
+  })();
+})();
+
+/* ── BEN CARD MOUSE-FOLLOW GLOW ── */
+document.querySelectorAll('.ben-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--gx', ((e.clientX - r.left) / r.width  * 100) + '%');
+    card.style.setProperty('--gy', ((e.clientY - r.top)  / r.height * 100) + '%');
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.setProperty('--gx', '50%');
+    card.style.setProperty('--gy', '50%');
+  });
+});
+
+/* ── HERO SCROLL PARALLAX ── */
+(function initScrollParallax() {
+  if (window.innerWidth < 768) return;
+
+  const hGrad = document.querySelector('.h-grad');
+  const hGrid = document.querySelector('.h-grid');
+  const hero  = document.getElementById('hero');
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      const h = hero ? hero.offsetHeight : window.innerHeight;
+      if (y < h) {
+        if (hGrad) hGrad.style.transform = `translateY(${y * .28}px)`;
+        if (hGrid) hGrid.style.transform = `translateY(${y * .15}px)`;
+      }
+      ticking = false;
+    });
+  }, { passive: true });
+})();
+
+/* ── FAQ ACCORDION ── */
+document.querySelectorAll('.faq-item').forEach(item => {
+  const btn = item.querySelector('.faq-q');
+  btn.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(o => {
+      o.classList.remove('open');
+      o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
   });
 });
